@@ -69,7 +69,7 @@ strip = true
 
 ```bash
 # 1. Clone or navigate to the workspace directory
-cd /path/to/PackageTUI
+cd /path/to/pkgman
 
 # 2. Build the optimized release binary
 cargo build --release
