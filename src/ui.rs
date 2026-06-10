@@ -535,8 +535,9 @@ fn render_detail_info(f: &mut Frame, pkg: &crate::app::Package, area: Rect, scro
     let has_provides = pkg.provides != "None" && !pkg.provides.is_empty();
     let has_licenses = pkg.licenses != "None" && !pkg.licenses.is_empty();
     let has_url = !pkg.url.is_empty() && pkg.url != "None";
+    let has_build_date = pkg.build_date != "None" && !pkg.build_date.is_empty();
 
-    if has_conflicts || has_replaces || has_provides || has_licenses || has_url {
+    if has_conflicts || has_replaces || has_provides || has_licenses || has_url || has_build_date {
         lines.push(Line::from(Span::styled("  MORE", hdr)));
         lines.push(Line::from(Span::styled(
             "  ──────────────────────────────────",
@@ -553,6 +554,9 @@ fn render_detail_info(f: &mut Frame, pkg: &crate::app::Package, area: Rect, scro
         }
         if has_licenses {
             field!(lines, "Licenses", pkg.licenses, Style::default().fg(Color::DarkGray));
+        }
+        if has_build_date {
+            field!(lines, "Build Date", pkg.build_date, val.clone());
         }
         if has_url {
             field!(lines, "URL", pkg.url, Color::Cyan);
