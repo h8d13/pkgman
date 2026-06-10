@@ -74,12 +74,3 @@ Before opening a PR, make sure:
 Look for issues tagged [`good first issue`](https://github.com/pathakjiop/pkgman/issues?q=label%3A"good+first+issue") — these are intentionally scoped for newcomers.
 
 ---
-
-## Roadmap
-
-- [ ] **Theming engine** — full color/style customization via `config.toml`
-- [ ] **Built-in theme presets** — Catppuccin, Nord, Gruvbox, Tokyo Night
-- [ ] **Mouse support** — optional click-to-select
-- [ ] **AUR comment viewer** — inline AUR comments and flag status
-- [ ] **Dependency tree visualizer** — graphical dep tree in the details pane
-- [ ] **AUR PKGBUILD diff viewer** — diff updates before installing
