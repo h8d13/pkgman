@@ -1158,9 +1158,9 @@ fn render_theme_builder_overlay(f: &mut Frame, area: Rect, app: &App) {
     // Left pane: Attribute list
     let fields = &[
         ("Theme Preset", if app.theme_builder_selected_theme_idx < crate::theme::THEMES.len() {
-            crate::theme::THEMES[app.theme_builder_selected_theme_idx].name
+            crate::theme::THEMES[app.theme_builder_selected_theme_idx].name.to_string()
         } else {
-            "custom"
+            "custom".to_string()
         }),
         ("Background", crate::theme::color_name(app.theme.background)),
         ("Foreground", crate::theme::color_name(app.theme.foreground)),
@@ -1175,7 +1175,7 @@ fn render_theme_builder_overlay(f: &mut Frame, area: Rect, app: &App) {
     ];
 
     let mut list_items = Vec::new();
-    for (i, &(label, val)) in fields.iter().enumerate() {
+    for (i, (label, val)) in fields.iter().enumerate() {
         let is_selected = i == app.theme_builder_cursor;
         
         let label_span = Span::styled(
