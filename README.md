@@ -35,6 +35,7 @@ Built with Rust · Powered by Ratatui · AUR-aware
 | Arch Linux (or Arch-based distro) | Manjaro, EndeavourOS, etc. work fine |
 | Rust toolchain (`cargo`, `rustc`) | Install via [rustup.rs](https://rustup.rs) |
 | `pacman` | Ships with Arch — you already have it |
+| `pacman-contrib` | Provides `pactree` (required for dependency tree visualizer) |
 | `yay` or `paru` *(optional)* | Required for AUR operations |
 
 ### Build from source
