@@ -41,10 +41,21 @@ async fn main() -> Result<(), Box<dyn Error>> {
 	// Channel for application event passing
 	let (tx, mut rx) = mpsc::unbounded_channel::<AppEvent>();
 
-	// Spawn input key event listener task using blocking reader
+	// Spawn input key event listener task using blocking reader.
+	// Poll with timeout so the thread exits once the channel closes,
+	// otherwise runtime shutdown blocks on read() until one more key
 	let tx_key = tx.clone();
 	tokio::task::spawn_blocking(move || {
-		while let Ok(ev) = ct_event::read() {
+		loop {
+			if tx_key.is_closed() {
+				break;
+			}
+			match ct_event::poll(Duration::from_millis(100)) {
+				Ok(false) => continue,
+				Err(_) => break,
+				Ok(true) => {}
+			}
+			let Ok(ev) = ct_event::read() else { break };
 			match ev {
 				CrosstermEvent::Key(key) if tx_key.send(AppEvent::Key(key)).is_err() => break,
 				CrosstermEvent::Resize(_, _) if tx_key.send(AppEvent::Resize).is_err() => break,
