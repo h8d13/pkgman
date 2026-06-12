@@ -35,7 +35,7 @@ Built with Rust · Powered by Ratatui · AUR-aware
 | Arch Linux (or Arch-based distro) | Manjaro, EndeavourOS, etc. work fine |
 | Rust toolchain | Install via `pacman` : `rustup` |
 | `pacman-contrib` | Provides `pactree` (required for dependency tree visualizer) |
-| `yay` or `paru` *(optional)* | Required for AUR operations |
+| `yay` or `paru` or `grimaur` *(optional)* | Required for AUR operations |
 
 ### Build from source
 
@@ -86,27 +86,6 @@ The file is **created automatically on first run** — `aur` is seeded to `true`
 ```toml
 # ~/.config/pkgman/config.toml
 aur = false
-```
-
----
-
-## AUR cache warm-up
-
-`pkgman` loads 114,000+ AUR packages in under 10ms by reading your AUR helper's shell completion cache directly:
-
-| Helper | Cache path |
-|--------|-----------|
-| `yay` | `~/.cache/yay/completion.cache` |
-| `paru` | `~/.cache/paru/completion.cache` |
-
-If AUR packages aren't appearing, warm up the cache first:
-
-```bash
-# yay
-yay -Sl aur > /dev/null
-
-# paru
-paru -Sl aur > /dev/null
 ```
 
 ---

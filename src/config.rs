@@ -152,7 +152,7 @@ pub fn save_config(aur: bool, theme: &crate::theme::Theme) -> std::io::Result<()
 		Err(_) => {
 			let mut body = String::from(
 				"# pkgman configuration\n\
-                 # aur: enable AUR helper (yay/paru) features. Set false for pacman-only.\n",
+                 # aur: enable AUR helper (yay/paru/grimaur) features. Set false for pacman-only.\n",
 			);
 			for (i, (k, v)) in values.iter().enumerate() {
 				if i == 1 {
@@ -223,7 +223,7 @@ fn which(cmd: &str) -> bool {
 }
 
 fn installed_helper() -> Option<&'static str> {
-	["paru", "yay"].into_iter().find(|h| which(h))
+	["paru", "yay", "grimaur"].into_iter().find(|h| which(h))
 }
 
 /// AUR helper to use, or None when AUR is disabled or no helper is installed.

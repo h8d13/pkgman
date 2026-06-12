@@ -9,6 +9,8 @@ crossterm = { version = "0.27", features = ["event-stream"] }
 tokio = { version = "1.37", features = ["full"] }
 unicode-width = "0.1"
 serde_json = "1.0"
+portable-pty = "0.9"
+vt100 = "0.15"
 
 [profile.release]
 opt-level = 3

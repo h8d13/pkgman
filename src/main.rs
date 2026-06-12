@@ -214,13 +214,28 @@ async fn main() -> Result<(), Box<dyn Error>> {
 					}
 					AppEvent::ConsoleFinished(success) => {
 						app.console_finished = Some(success);
+						app.console_pty = None;
 						app.is_loading = false;
 						if success {
 							trigger_db_reload(tx.clone());
 						}
 					}
+					AppEvent::PtyStarted(pty) => {
+						let size = handlers::console_pty_size();
+						app.console_term = Some(vt100::Parser::new(
+							size.rows, size.cols, 2000,
+						));
+						app.console_pty = Some(pty);
+					}
 					AppEvent::Resize => {
 						let _ = terminal.clear();
+						let size = handlers::console_pty_size();
+						if let Some(pty) = &app.console_pty {
+							let _ = pty.master.resize(size);
+						}
+						if let Some(term) = app.console_term.as_mut() {
+							term.set_size(size.rows, size.cols);
+						}
 					}
 					AppEvent::AurDetailsLoaded(fetched) => {
 						if let Some(idx) = app
