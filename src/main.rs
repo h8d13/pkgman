@@ -205,11 +205,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
 						app.update_installed_cache();
 					}
 					AppEvent::DepTreeLoaded(pkg_name, res) => {
+						// Always clear: result may be for a stale selection,
+						// leaving the flag set blocks any future fetch
+						app.dep_tree_loading = false;
 						if !app.view.is_empty() && app.cursor < app.view.len() {
 							let current_pkg_name =
 								&app.pkgs[app.view[app.cursor]].name;
 							if current_pkg_name == &pkg_name {
-								app.dep_tree_loading = false;
 								match res {
 									Ok(tree) => {
 										app.dep_tree_content = tree;

@@ -9,7 +9,7 @@
 ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
 ```
 
-**A high-performance, keyboard-driven TUI package manager for Arch Linux**  
+**A high-performance, keyboard-driven TUI package manager for Arch Linux**
 Built with Rust · Powered by Ratatui · AUR-aware
 
 [![Rust](https://img.shields.io/badge/built_with-Rust-ce422b?style=flat-square&logo=rust)](https://www.rust-lang.org/)
@@ -136,6 +136,8 @@ paru -Sl aur > /dev/null
 | `?` | Toggle help overlay |
 | `q` | Quit |
 
+`CTRL + J/K or PgUp/PgDown` controls the middle pannel.
+
 ---
 
 ## Theming
@@ -149,17 +151,17 @@ A full theming system is planned that will allow full control over colors, pane 
 ## Roadmap
 
 - [x] **Theming Engine** — Multiple preconfigured themes with instant switching support.
-- [ ] **Built-in theme presets** — Catppuccin, Nord, Gruvbox, Tokyo Night
-- [ ] **Mouse support** — optional click-to-select
+- [x] **Built-in theme presets** — Catppuccin, Nord, Gruvbox, Tokyo Night
+- [x] **Dependency tree visualizer** — graphical dep tree in the details pane
+- [x] **Search wiki entry** — Searches current package for related wiki entries
 - [ ] **AUR comment viewer** — inline AUR comments and flag status
-- [ ] **Dependency tree visualizer** — graphical dep tree in the details pane
 - [ ] **AUR PKGBUILD diff viewer** — diff updates before installing
 
 ---
 
 <div align="center">
 
-Made with ♥ on Arch Linux  
+Made with ♥ on Arch Linux
 [⭐ Star this repo](https://github.com/pathakjiop/pkgman) · [🐛 Report a bug](https://github.com/pathakjiop/pkgman/issues/new?template=bug_report.md) · [💡 Request a feature](https://github.com/pathakjiop/pkgman/issues/new?template=feature_request.md)
 
 </div>
