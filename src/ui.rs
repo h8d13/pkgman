@@ -75,7 +75,7 @@ fn status_icon(installed: bool, upgradable: bool, theme: &crate::theme::Theme) -
 // ── main render ─────────────────────────────────────────────────────
 
 pub fn render(f: &mut Frame, app: &mut App) {
-	let size = f.size();
+	let size = f.area();
 
 	let outer = Layout::default()
 		.direction(Direction::Vertical)
@@ -1200,7 +1200,7 @@ fn render_console_overlay(f: &mut Frame, area: Rect, app: &mut App) {
 	};
 	let mut lines = Vec::new();
 	if let Some(term) = app.console_term.as_mut() {
-		term.set_scrollback(scrollback);
+		term.screen_mut().set_scrollback(scrollback);
 		let screen = term.screen();
 		let (rows, cols) = screen.size();
 		for row in 0..rows {
@@ -1213,11 +1213,7 @@ fn render_console_overlay(f: &mut Frame, area: Rect, app: &mut App) {
 				};
 				let style = console_cell_style(cell);
 				let txt = cell.contents();
-				let txt = if txt.is_empty() {
-					String::from(" ")
-				} else {
-					txt
-				};
+				let txt = if txt.is_empty() { " " } else { txt };
 				if style != run_style && !run.is_empty() {
 					spans.push(Span::styled(
 						std::mem::take(&mut run),
@@ -1225,7 +1221,7 @@ fn render_console_overlay(f: &mut Frame, area: Rect, app: &mut App) {
 					));
 				}
 				run_style = style;
-				run.push_str(&txt);
+				run.push_str(txt);
 			}
 			if !run.is_empty() {
 				spans.push(Span::styled(run, run_style));
