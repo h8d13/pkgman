@@ -1091,15 +1091,11 @@ fn clean_wikitext(text: &str) -> String {
 				&& let Some(offset) = chars[i + 1..].iter().position(|&c| c == ']')
 			{
 				let close_idx = i + 1 + offset;
-				let inner =
-					chars[i + 1..close_idx].iter().collect::<String>();
+				let inner = chars[i + 1..close_idx].iter().collect::<String>();
 				if let Some(space_idx) = inner.find(' ') {
 					let url = &inner[..space_idx];
 					let display = &inner[space_idx + 1..];
-					cleaned_line.push_str(&format!(
-						"{} ({})",
-						display, url
-					));
+					cleaned_line.push_str(&format!("{} ({})", display, url));
 				} else {
 					cleaned_line.push_str(&inner);
 				}
